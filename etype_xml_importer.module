@@ -21,7 +21,7 @@ function etype_xml_importer_menu() {
   /* admin settings page */
   $items['admin/config/etype/etype_xml_importer'] = array(
     'title' => 'eType',
-    'description' => 'eType Settings', // Like any other menu item
+    'description' => 'eType XML Importer Settings', // Like any other menu item
     'position' => 'right',
     'weight' => -15,
     'page callback' => 'system_admin_menu_block_page',
@@ -31,7 +31,7 @@ function etype_xml_importer_menu() {
   );
 
   $items['admin/config/etype/etype_xml_importer/settings'] = array(
-    'title' => 'XML Import Settings',
+    'title' => 'eType XML Importer Settings',
     'description' => 'XML content import options.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('etype_xml_importer_admin'),
