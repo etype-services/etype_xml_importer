@@ -18,18 +18,6 @@ function etype_xml_importer_menu() {
     'file' => 'includes/xml_importer.import.inc'
   );
 
-  /* admin settings page */
-  $items['admin/config/etype/etype_xml_importer'] = array(
-    'title' => 'eType',
-    'description' => 'eType XML Importer Settings', // Like any other menu item
-    'position' => 'right',
-    'weight' => -15,
-    'page callback' => 'system_admin_menu_block_page',
-    'access arguments' => array('administer site configuration'), // Permission needed to view this area
-    'file' => 'system.admin.inc',
-    'file path' => drupal_get_path('module', 'system'),
-  );
-
   $items['admin/config/etype/etype_xml_importer/settings'] = array(
     'title' => 'eType XML Importer Settings',
     'description' => 'XML content import options.',
