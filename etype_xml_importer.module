@@ -1,7 +1,18 @@
 <?php
 
 /**
- * add e-Edition link to user menu
+ * Implements hook_permission().
+ */
+function etype_wire_permission() {
+  return [
+    'administer xml import' => [
+      'title' => t('Administer XML Import'),
+    ],
+  ];
+}
+
+/**
+ * add import and admin urls
  * @return array
  */
 function etype_xml_importer_menu() {
