@@ -3,12 +3,12 @@
 /**
  * Implements hook_permission().
  */
-function etype_wire_permission() {
-  return [
-    'administer xml import' => [
+function etype_xml_importer_permission() {
+  return array(
+    'administer xml import' => array(
       'title' => t('Administer XML Import'),
-    ],
-  ];
+    )
+  );
 }
 
 /**
