@@ -12,7 +12,7 @@ function etype_xml_importer_menu() {
     'title' => 'Import Olive XML',
     'description' => 'Olive XML Importer',
     'page callback' => 'etype_xml_importer_olive_import',
-    'access arguments' => array('administer wire content'),
+    'access arguments' => array('administer xml import'),
     'menu_name' => 'user-menu',
     'type' => MENU_NORMAL_ITEM,
     'file' => 'includes/xml_importer.import.inc'
@@ -23,7 +23,7 @@ function etype_xml_importer_menu() {
     'description' => 'XML content import options.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('etype_xml_importer_admin'),
-    'access arguments' => array('administer wire content'),
+    'access arguments' => array('administer xml import'),
     'file' => 'includes/xml_importer.admin.inc',
     'type' => MENU_NORMAL_ITEM,
   );
