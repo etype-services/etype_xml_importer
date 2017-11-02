@@ -10,8 +10,8 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
   $entity = entity_create($entity_type, $values);
   $wrapper = entity_metadata_wrapper($entity_type, $entity);
-  var_dump($wrapper);
-  exit;
+  //var_dump($wrapper);
+  //exit;
   if (count($item) > 0) {
     foreach ($item as $k => $v) {
       switch ($k) {
@@ -46,7 +46,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $file = (array) $file;
             $files[] = $file;
           }
-          $wrapper->field_image->set($files);
+          $wrapper->field_mt_banner_image->set($files);
           break;
 
         default:
