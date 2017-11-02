@@ -75,8 +75,6 @@ function etype_xml_importer_olive_import() {
   if (substr($base_import_url, -1) !== '/') {
     $base_import_url = $base_import_url . '/';
   }
-  echo $base_import_url;
-  exit;
   $import_file_array = explode(',', $import_files);
 
   if (count($import_file_array) > 0) {

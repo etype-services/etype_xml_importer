@@ -8,6 +8,10 @@ function etype_xml_importer_admin() {
   $tmp = variable_get('etype_xml_base_import_url');
   $etype_xml_base_import_url = !empty($tmp)? $tmp: 'http://olivexml.etypeservices.com/olivexml/';
 
+  $node_types = node_type_get_types();
+
+  var_dump($node_types);
+
   /* e_edition settings */
   $form['etype_xml_importer'] = array(
     '#type' => 'fieldset',
