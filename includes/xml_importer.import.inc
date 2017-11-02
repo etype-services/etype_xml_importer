@@ -70,6 +70,8 @@ function etype_xml_importer_olive_import() {
     watchdog('etype_xml_importer', "XML import setting empty.", $variables = array(), $severity = WATCHDOG_NOTICE);
     return;
   }
+
+  // Import URL, with commented out testing option, and check for trailing slash
   // $base_import_url = 'http://test.etypegoogle4.com/xml-import/';
   $base_import_url = variable_get('etype_xml_base_import_url');
   if (substr($base_import_url, -1) !== '/') {
