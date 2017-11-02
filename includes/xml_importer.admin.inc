@@ -10,8 +10,10 @@ function etype_xml_importer_admin() {
 
   $node_types = node_type_get_types();
 
-  var_dump($node_types);
-  exit;
+  $types = array();
+  foreach ($node_types as $item) {
+    $types[$item->name] = $item->type;
+  }
 
   /* e_edition settings */
   $form['etype_xml_importer'] = array(
@@ -41,6 +43,13 @@ function etype_xml_importer_admin() {
     '#description' => t('Base Url from which to import xml.'),
     '#size' => 55,
     '#default_value' => $etype_xml_base_import_url,
+  );
+
+  $form['etype_xml_importer']['etype_xml_node_type'] = array(
+    '#title' => t('Content Type'),
+    '#type' => 'select',
+    '#description' => 'Choose the content type into which to import stories.',
+    '#options' => $types,
   );
 
   return system_settings_form($form);
