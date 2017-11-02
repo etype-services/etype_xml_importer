@@ -16,6 +16,7 @@ function etype_xml_importer_admin() {
     $types[$item->type] = $item->name;
   }
   $tmp = variable_get('etype_xml_node_type');
+  echo $tmp;
   $default_type = (empty($tmp))? 'article': $tmp;
 
   /* e_edition settings */
