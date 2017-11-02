@@ -11,6 +11,7 @@ function etype_xml_importer_admin() {
   $node_types = node_type_get_types();
 
   var_dump($node_types);
+  exit;
 
   /* e_edition settings */
   $form['etype_xml_importer'] = array(
