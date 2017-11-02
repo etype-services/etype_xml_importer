@@ -50,7 +50,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         default:
-          if (field_info_instance('node', "$k", 'article')) {
+          if (field_info_instance('node', "$k", 'mt_post')) {
             $wrapper->$k->set($v);
           }
       }
@@ -116,7 +116,7 @@ function etype_xml_importer_olive_import() {
       if (count($entries) > 0) {
 
         $values = array(
-          'type' => 'article',
+          'type' => 'mt_post',
           'uid' => $user->uid,
           'status' => 0,
           'comment' => 0,
