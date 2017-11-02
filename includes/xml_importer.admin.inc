@@ -44,7 +44,7 @@ function etype_xml_importer_admin() {
   $form['etype_xml_importer']['etype_xml_base_import_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Base Import Url'),
-    '#description' => t('Base Url from which to import xml.'),
+    '#description' => t('Base url from which to import xml.'),
     '#size' => 55,
     '#default_value' => $etype_xml_base_import_url,
   );
