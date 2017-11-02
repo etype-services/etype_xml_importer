@@ -5,15 +5,18 @@ function etype_xml_importer_admin() {
 
   $form = array();
 
+  // Default Import URL
   $tmp = variable_get('etype_xml_base_import_url');
-  $etype_xml_base_import_url = !empty($tmp)? $tmp: 'http://olivexml.etypeservices.com/olivexml/';
+  $etype_xml_base_import_url = empty($tmp)? 'http://olivexml.etypeservices.com/olivexml/': $tmp;
 
+  // Choose node type into which to import
   $node_types = node_type_get_types();
-
   $types = array();
   foreach ($node_types as $item) {
     $types[$item->type] = $item->name;
   }
+  $tmp = variable_get('etype_xml_node_type');
+  $default_type = (empty($tmp))? 'article': $tmp;
 
   /* e_edition settings */
   $form['etype_xml_importer'] = array(
@@ -50,6 +53,7 @@ function etype_xml_importer_admin() {
     '#type' => 'select',
     '#description' => 'Choose the content type into which to import stories.',
     '#options' => $types,
+    '#default_value' => $default_type,
   );
 
   return system_settings_form($form);
