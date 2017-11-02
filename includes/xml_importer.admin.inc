@@ -5,6 +5,9 @@ function etype_xml_importer_admin() {
 
   $form = array();
 
+  $tmp = variable_get('etype_xml_base_import_url');
+  $etype_xml_base_import_url = !empty($tmp)? $tmp: 'http://olivexml.etypeservices.com/olivexml/';
+
   /* e_edition settings */
   $form['etype_xml_importer'] = array(
     '#type' => 'fieldset',
@@ -25,6 +28,14 @@ function etype_xml_importer_admin() {
     '#description' => t('Enter a valid cron schedule'),
     '#size' => 55,
     '#default_value' => variable_get('etype_xml_cron_schedule'),
+  );
+
+  $form['etype_xml_importer']['etype_xml_base_import_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Base Import Url'),
+    '#description' => t('Base Url from which to import xml.'),
+    '#size' => 55,
+    '#default_value' => $etype_xml_base_import_url,
   );
 
   return system_settings_form($form);
