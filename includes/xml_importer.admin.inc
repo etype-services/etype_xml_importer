@@ -12,7 +12,7 @@ function etype_xml_importer_admin() {
 
   $types = array();
   foreach ($node_types as $item) {
-    $types[$item->name] = $item->type;
+    $types[$item->type] = $item->name;
   }
 
   /* e_edition settings */
