@@ -10,8 +10,8 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
   $entity = entity_create($entity_type, $values);
   $wrapper = entity_metadata_wrapper($entity_type, $entity);
-  //var_dump($wrapper);
-  //exit;
+  $node_type = variable_get('etype_xml_node_type');
+
   if (count($item) > 0) {
     foreach ($item as $k => $v) {
       switch ($k) {
@@ -50,7 +50,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         default:
-          if (field_info_instance('node', "$k", 'mt_post')) {
+          if (field_info_instance('node', "$k", $node_type)) {
             $wrapper->$k->set($v);
           }
       }
@@ -120,8 +120,9 @@ function etype_xml_importer_olive_import() {
       /* Loop over found files and do the extraction */
       if (count($entries) > 0) {
 
+        $node_type = variable_get('etype_xml_node_type');
         $values = array(
-          'type' => 'mt_post',
+          'type' => $node_type,
           'uid' => $user->uid,
           'status' => 0,
           'comment' => 0,
