@@ -11,6 +11,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $entity = entity_create($entity_type, $values);
   $wrapper = entity_metadata_wrapper($entity_type, $entity);
   $node_type = variable_get('etype_xml_node_type');
+  $kicker_format = variable_get('etype_xml_kicker_format', 'plain_text');
 
   if (count($item) > 0) {
     foreach ($item as $k => $v) {
@@ -31,11 +32,18 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'field_kicker':
           if (field_info_instance('node', "field_kicker", $node_type)) {
-            $wrapper->field_kicker->set(array(
-                'value' => $v,
-                'format' => 'full_html'
-              )
-            );
+            switch ($kicker_format) {
+              case 'full_html':
+                $wrapper->field_kicker->set(array(
+                    'value' => $v,
+                    'format' => 'full_html'
+                  )
+                );
+                break;
+
+              default:
+                $wrapper->field_kicker->set($v);
+            }
           }
           break;
 
@@ -48,6 +56,8 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $file = file_save_data(file_get_contents($arr['path']), 'public://' . $arr['name']);
             $file->display = '1';
             $file->description = $arr['caption'];
+            /* Set caption if image field caption enabled, otherwise set
+            title */
             if (module_exists('image_field_caption')) {
               $file->image_field_caption = array(
                 'value' => $arr['caption'],

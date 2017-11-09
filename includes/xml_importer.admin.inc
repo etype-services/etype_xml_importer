@@ -57,5 +57,13 @@ function etype_xml_importer_admin() {
     '#default_value' => $default_type,
   );
 
+  $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
+    '#title' => t('Kicker format'),
+    '#type' => 'select',
+    '#description' => 'Choose the content type into which to import stories.',
+    '#options' => array("Plain text" => 'plain_text', "Full HTML" => 'full_html'),
+    '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
+  );
+
   return system_settings_form($form);
 }
