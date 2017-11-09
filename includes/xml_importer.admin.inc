@@ -61,7 +61,8 @@ function etype_xml_importer_admin() {
     '#title' => t('Kicker format'),
     '#type' => 'select',
     '#description' => 'Select a "kicker" field format.',
-    '#options' => array("Plain text" => 'plain_text', "Full HTML" => 'full_html'),
+    '#options' => array('plain_text' => 'Plain text', 'full_html' => 'Full 
+  HTML'),
     '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
   );
 
