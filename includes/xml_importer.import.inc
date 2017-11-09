@@ -54,8 +54,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
                 'format' => 'plain_text'
               );
             } else {
-              dpm($arr['caption']);
-              $file->field_image_title = $arr['caption'];
+              $file->title = $arr['caption'];
             }
             $file = file_save($file);
             $file = (array) $file;
