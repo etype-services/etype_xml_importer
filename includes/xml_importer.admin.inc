@@ -66,7 +66,7 @@ function etype_xml_importer_admin() {
   $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
     '#title' => t('Kicker format'),
     '#type' => 'select',
-    '#description' => 'Select a "kicker" field format.',
+    '#description' => 'Select the "kicker" field text format.',
     '#options' => $formats,
     '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
   );
