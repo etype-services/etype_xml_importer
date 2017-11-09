@@ -29,6 +29,15 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           );
           break;
 
+        case 'field_kicker':
+          $wrapper->field_kicker->set(array(
+              'value' => $v,
+              'summary' => $item['summary'],
+              'format' => 'full_html'
+            )
+          );
+          break;
+
         case 'summary':
           break;
 
