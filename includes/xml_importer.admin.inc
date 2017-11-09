@@ -57,6 +57,7 @@ function etype_xml_importer_admin() {
     '#default_value' => $default_type,
   );
 
+  /* get available text formats and make into array */
   $filter_formats = filter_formats();
   $formats = [];
   foreach($filter_formats as $format) {
