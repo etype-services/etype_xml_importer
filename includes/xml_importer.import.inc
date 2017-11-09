@@ -31,7 +31,6 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'field_kicker':
           if (field_info_instance('node', "field_kicker", $node_type)) {
-            dpm ($wrapper->field_kicker);
             $wrapper->field_kicker->set(array(
                 'value' => $v,
                 'format' => 'full_html'
