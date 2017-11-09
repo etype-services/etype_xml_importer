@@ -60,7 +60,7 @@ function etype_xml_importer_admin() {
   $filter_formats = filter_formats();
   $formats = [];
   foreach($filter_formats as $format) {
-    $formats[$format['format']] = $format['name'];
+    $formats[$format->format] = $format->name;
   }
 
   $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
