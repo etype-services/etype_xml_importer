@@ -44,7 +44,7 @@ function etype_xml_importer_admin() {
   $form['etype_xml_importer']['etype_xml_base_import_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Base Import Url'),
-    '#description' => t('Base url from which to import xml.'),
+    '#description' => t('Url from which to import xml.'),
     '#size' => 55,
     '#default_value' => $etype_xml_base_import_url,
   );
@@ -55,6 +55,15 @@ function etype_xml_importer_admin() {
     '#description' => 'Choose the content type into which to import stories.',
     '#options' => $types,
     '#default_value' => $default_type,
+  );
+
+  $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
+    '#title' => t('Kicker format'),
+    '#type' => 'select',
+    '#description' => 'Select a "kicker" field format.',
+    '#options' => array('plain_text' => 'Plain text', 'full_html' => 'Full 
+  HTML'),
+    '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
   );
 
   return system_settings_form($form);
