@@ -57,6 +57,9 @@ function etype_xml_importer_admin() {
     '#default_value' => $default_type,
   );
 
+  $formats = filter_formats();
+  dpm($formats);
+
   $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
     '#title' => t('Kicker format'),
     '#type' => 'select',
