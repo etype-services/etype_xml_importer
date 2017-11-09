@@ -57,15 +57,17 @@ function etype_xml_importer_admin() {
     '#default_value' => $default_type,
   );
 
-  $formats = filter_formats();
-  dpm($formats);
+  $filter_formats = filter_formats();
+  $formats = [];
+  foreach($filter_formats as $format) {
+    $formats[$format['format']] = $format['name'];
+  }
 
   $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
     '#title' => t('Kicker format'),
     '#type' => 'select',
     '#description' => 'Select a "kicker" field format.',
-    '#options' => array('plain_text' => 'Plain text', 'full_html' => 'Full 
-  HTML'),
+    '#options' => $formats,
     '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
   );
 
