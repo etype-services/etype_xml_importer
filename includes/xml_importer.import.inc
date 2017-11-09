@@ -34,7 +34,6 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             dpm ($wrapper->field_kicker);
             $wrapper->field_kicker->set(array(
                 'value' => $v,
-                'summary' => $item['summary'],
                 'format' => 'full_html'
               )
             );
@@ -51,6 +50,10 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $file->display = '1';
             $file->description = $arr['caption'];
             $file->image_field_caption = array(
+              'value' => $arr['caption'],
+              'format' => 'plain_text'
+            );
+            $file->title = array(
               'value' => $arr['caption'],
               'format' => 'plain_text'
             );
