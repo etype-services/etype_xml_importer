@@ -53,7 +53,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
               'value' => $arr['caption'],
               'format' => 'plain_text'
             );
-            $file->title = array(
+            $file->field_image_title = array(
               'value' => $arr['caption'],
               'format' => 'plain_text'
             );
