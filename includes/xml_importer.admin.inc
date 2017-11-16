@@ -73,8 +73,19 @@ function etype_xml_importer_admin() {
   );
 
   $fields_info = field_info_instances('node', 'article');
+  $fields = [];
+  foreach($fields_info as $field) {
+    $fields[$field->field_name] = $field->label;
+  }
 
-  dpm($fields_info);
+  $form['etype_xml_importer']['etype_xml_byline_field'] = array(
+    '#title' => t('Byline field'),
+    '#type' => 'select',
+    '#description' => 'The field to use for the byline.',
+    '#options' => $fields,
+    '#default_value' => variable_get('etype_xml_byline_field', 'field_dateline'),
+  );
+
 
   return system_settings_form($form);
 }

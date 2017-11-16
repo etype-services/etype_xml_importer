@@ -95,6 +95,9 @@ function etype_xml_importer_olive_import() {
     return;
   }
 
+  // Settings
+  $byline_field = variable_get('etype_xml_byline_field', 'field_dateline');
+
   // Import URL, with commented out testing option, and check for trailing slash
   // $base_import_url = 'http://test.etypegoogle4.com/xml-import/';
   $base_import_url = variable_get('etype_xml_base_import_url');
@@ -262,7 +265,7 @@ function etype_xml_importer_olive_import() {
                       'summary' => strip_tags($array['description']),
                       'body' => $array['body'],
                       'field_kicker' => $array['slugline'],
-                      'field_dateline' => $array['byline'],
+                      $byline_field => $array['byline'],
                       'images' => $array['images'],
                     );
                     // print_r($node);
