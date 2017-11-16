@@ -75,7 +75,7 @@ function etype_xml_importer_admin() {
   $fields_info = field_info_instances('node', 'article');
   $fields = [];
   foreach($fields_info as $field) {
-    $fields[$field->field_name] = $field->label;
+    $fields[$field['field_name']] = $field['label'];
   }
 
   $form['etype_xml_importer']['etype_xml_byline_field'] = array(
