@@ -72,7 +72,7 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
   );
 
-  $fields_info = field_info_instances('node', 'article');
+  $fields_info = field_info_instances('node', $default_type);
   $fields = [];
   foreach($fields_info as $field) {
     $fields[$field['field_name']] = $field['label'];
