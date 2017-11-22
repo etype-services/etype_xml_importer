@@ -22,7 +22,7 @@ function etype_xml_importer_admin() {
   /* importer settings */
   $form['etype_xml_importer'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Olive XML import basic configuration'),
+    '#title' => t('Basic configuration'),
   );
 
   $form['etype_xml_importer']['etype_xml_import_file'] = array(
@@ -44,7 +44,7 @@ function etype_xml_importer_admin() {
   /* importer settings */
   $form['etype_xml_importer_advanced'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Olive XML import advanced configuration'),
+    '#title' => t('Advanced configuration'),
     '#collapsible' => TRUE,
   );
 
@@ -71,7 +71,7 @@ function etype_xml_importer_admin() {
     $formats[$format->format] = $format->name;
   }
 
-  $form['etype_xml_importer']['etype_xml_kicker_format'] = array(
+  $form['etype_xml_importer_advanced']['etype_xml_kicker_format'] = array(
     '#title' => t('Kicker format'),
     '#type' => 'select',
     '#description' => 'Select the "kicker" field text format.',
@@ -85,7 +85,7 @@ function etype_xml_importer_admin() {
     $fields[$field['field_name']] = $field['label'];
   }
 
-  $form['etype_xml_importer']['etype_xml_byline_field'] = array(
+  $form['etype_xml_importer_advanced']['etype_xml_byline_field'] = array(
     '#title' => t('Byline field'),
     '#type' => 'select',
     '#description' => 'The field to use for the byline.',
