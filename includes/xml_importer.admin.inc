@@ -46,6 +46,7 @@ function etype_xml_importer_admin() {
     '#type' => 'fieldset',
     '#title' => t('Advanced configuration'),
     '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   );
 
   $form['etype_xml_importer_advanced']['etype_xml_base_import_url'] = array(
