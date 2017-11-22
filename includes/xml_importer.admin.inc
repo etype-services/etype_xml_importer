@@ -19,10 +19,10 @@ function etype_xml_importer_admin() {
   // default should be article normally
   $default_type = (empty($tmp))? 'article': $tmp;
 
-  /* e_edition settings */
+  /* importer settings */
   $form['etype_xml_importer'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Olive XML import configuration'),
+    '#title' => t('Olive XML import basic configuration'),
   );
 
   $form['etype_xml_importer']['etype_xml_import_file'] = array(
@@ -41,7 +41,14 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_cron_schedule'),
   );
 
-  $form['etype_xml_importer']['etype_xml_base_import_url'] = array(
+  /* importer settings */
+  $form['etype_xml_importer_advanced'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Olive XML import advanced configuration'),
+    '#collapsible' => TRUE,
+  );
+
+  $form['etype_xml_importer_advanced']['etype_xml_base_import_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Base Import Url'),
     '#description' => t('Url from which to import xml.'),
@@ -49,7 +56,7 @@ function etype_xml_importer_admin() {
     '#default_value' => $etype_xml_base_import_url,
   );
 
-  $form['etype_xml_importer']['etype_xml_node_type'] = array(
+  $form['etype_xml_importer_advanced']['etype_xml_node_type'] = array(
     '#title' => t('Content Type'),
     '#type' => 'select',
     '#description' => 'Choose the content type into which to import stories.',
