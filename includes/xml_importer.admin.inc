@@ -89,7 +89,7 @@ function etype_xml_importer_admin() {
   $form['etype_xml_importer_advanced']['etype_xml_byline_field'] = array(
     '#title' => t('Byline field'),
     '#type' => 'select',
-    '#description' => 'The field to use for the byline.',
+    '#description' => 'The Drupal field to use for the imported byline.',
     '#options' => $fields,
     '#default_value' => variable_get('etype_xml_byline_field', 'field_dateline'),
   );
