@@ -47,6 +47,23 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
           break;
 
+        case 'field_subhead':
+          if (field_info_instance('node', "field_subhead", $node_type)) {
+            switch ($kicker_format) {
+              case 'full_html':
+                $wrapper->field_subhead->set(array(
+                    'value' => $v,
+                    'format' => 'full_html'
+                  )
+                );
+                break;
+
+              default:
+                $wrapper->field_kicker->set($v);
+            }
+          }
+          break;
+
         case 'summary':
           break;
 
@@ -264,7 +281,8 @@ function etype_xml_importer_olive_import() {
                       'title' => $array['title'],
                       'summary' => strip_tags($array['description']),
                       'body' => $array['body'],
-                      'field_kicker' => $array['slugline'],
+                      // 'field_kicker' => $array['slugline'],
+                      'field_subhead' => $array['slugline'],
                       $byline_field => $array['byline'],
                       'images' => $array['images'],
                     );
