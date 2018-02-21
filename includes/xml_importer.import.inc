@@ -286,9 +286,6 @@ function etype_xml_importer_olive_import() {
                       $byline_field => $array['byline'],
                       'images' => $array['images'],
                     );
-                    if (module_exists('premium')) {
-                      $node['premium'] = 'default';
-                    }
                     // print_r($node);
 
                     $values['created'] = strtotime($array['pub_date']);
