@@ -280,7 +280,7 @@ function etype_xml_importer_olive_import() {
 
                     $node = array(
                       'title' => $array['title'],
-                      'summary' => strip_tags($array['description']),
+                      // 'summary' => strip_tags($array['description']), not set up
                       'body' => $array['body'],
                       // 'field_kicker' => $array['slugline'],
                       'field_subhead' => $array['slugline'],
