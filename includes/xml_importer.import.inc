@@ -278,7 +278,7 @@ function etype_xml_importer_olive_import() {
                       }
                     }
                     /* Images now part of $array */
-                    // print_r ($array);
+                    print_r ($array);
 
                     $node = array(
                       'title' => $array['title'],
