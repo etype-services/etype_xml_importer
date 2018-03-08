@@ -211,6 +211,7 @@ function etype_xml_importer_olive_import() {
                     // s flag makes dot match linebreaks as well
                     preg_match("'<body>(.*?)</body>'s", $ar_xml, $coincidencias);
                     $body = $coincidencias[1];
+                    var_dump($body);
                     $body = preg_replace("'<xhtml:h1>(.*?)</xhtml:h1>'s", "", $body);
                     $body = preg_replace("'<pam:media>(.*?)</pam:media>'s", "", $body);
                     // $body = preg_replace("'<xhtml:p prism:class=\"deck\">(
