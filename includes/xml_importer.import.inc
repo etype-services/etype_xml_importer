@@ -212,8 +212,8 @@ function etype_xml_importer_olive_import() {
                     preg_match("'<body>(.*?)</body>'s", $ar_xml, $coincidencias);
                     $body = $coincidencias[1];
                     var_dump($body);
-                    $body = preg_replace("'<xhtml:h1>(.*?)</xhtml:h1>'s", "", $body);
-                    $body = preg_replace("'<pam:media>(.*?)</pam:media>'s", "", $body);
+                    //$body = preg_replace("'<xhtml:h1>(.*?)</xhtml:h1>'s","", $body);
+                    //$body = preg_replace("'<pam:media>(.*?)</pam:media>'s","", $body);
                     // $body = preg_replace("'<xhtml:p prism:class=\"deck\">(
                     //.*?)</xhtml:p>'s", "", $body, 1);
                     // $body = preg_replace("'<xhtml:p prism:class=\"byline\">(.*?)</xhtml:p>'s", "", $body, 1);
