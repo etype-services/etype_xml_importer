@@ -217,7 +217,7 @@ function etype_xml_importer_olive_import() {
                     $body = preg_replace("'<xhtml:p prism:class=\"byline\">(.*?)</xhtml:p>'s", "", $body, 1);
                     $body = preg_replace("/xhtml:([a-z]?)/", "$1", $body);
                     // fix tags
-                    $array['body'] = $body;
+                    $array['body'] = trim($body);
 
                     // get the slugline
                     preg_match("'<xhtml:p prism:class=\"deck\">(.*?)</xhtml:p>'s", $ar_xml, $coincidencias);
@@ -276,7 +276,7 @@ function etype_xml_importer_olive_import() {
                       }
                     }
                     /* Images now part of $array */
-                    print_r ($array);
+                    // print_r ($array);
 
                     $node = array(
                       'title' => $array['title'],
@@ -287,11 +287,11 @@ function etype_xml_importer_olive_import() {
                       $byline_field => $array['byline'],
                       'images' => $array['images'],
                     );
-                    print_r($node);
+                    // print_r($node);
 
                     $values['created'] = strtotime($array['pub_date']);
                     etype_xml_importer_entity_create($node, $values);
-                    exit;
+                    // exit;
                     $i++;
                     // echo $i . ' ';
                   }
