@@ -95,9 +95,9 @@ function etype_xml_importer_admin() {
   );
 
   $form['etype_xml_importer_advanced']['etype_xml_import_classifieds'] = array(
-    '#title' => t('Byline field'),
+    '#title' => t('Import classifieds'),
     '#type' => 'checkbox',
-    '#description' => 'Import classifieds>',
+    '#description' => 'Check to import Olive classified section.',
     '#default_value' => variable_get('etype_xml_import_classifieds', 0),
   );
 
