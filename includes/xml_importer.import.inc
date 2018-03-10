@@ -287,9 +287,9 @@ function etype_xml_importer_olive_import() {
                       'title' => $array['title'],
                       // 'summary' => strip_tags($array['description']), not set up
                       'body' => $array['body'],
-                      // 'field_kicker' => $array['slugline'],
+                      // 'field_kicker' => $array['slugline'], deprecated
                       'field_subhead' => $array['slugline'],
-                      $byline_field => substr($array['byline'], 0, 255),
+                      $byline_field => substr($array['byline'], 0, 255), // trim to field length
                       'images' => $array['images'],
                     );
                     // print_r($node);
