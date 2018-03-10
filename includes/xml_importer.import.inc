@@ -22,9 +22,10 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         case 'body':
+          $summary = isset($item['summary'])? $item['summary']: '';
           $wrapper->body->set(array(
             'value' => $v,
-            'summary' => $item['summary'],
+            'summary' => $summary,
             'format' => 'full_html'
             )
           );
@@ -197,12 +198,12 @@ function etype_xml_importer_olive_import() {
                     preg_match("/<prism:section>([^<]+)/", $ar_xml, $coincidencias);
                     /* ignore classifieds? */
                     $etype_xml_import_classifieds = variable_get('etype_xml_import_classifieds');
-                    echo $etype_xml_import_classifieds;
-                    //if ($etype_xml_import_classifieds !== 1) {
+                    // echo $etype_xml_import_classifieds;
+                    if ($etype_xml_import_classifieds !== 1) {
                       if ($coincidencias[1] == 'Classifieds') {
                         continue;
                       }
-                    //}
+                    }
                     $array['section'] = $coincidencias[1];
 
                     preg_match("/<dc:title>([^<]+)/", $ar_xml, $coincidencias);
