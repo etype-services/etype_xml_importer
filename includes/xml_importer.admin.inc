@@ -94,6 +94,12 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_byline_field', 'field_dateline'),
   );
 
+  $form['etype_xml_importer_advanced']['etype_xml_import_classifieds'] = array(
+    '#title' => t('Byline field'),
+    '#type' => 'checkbox',
+    '#description' => 'Import classifieds>',
+    '#default_value' => variable_get('etype_xml_import_classifieds', 0),
+  );
 
   return system_settings_form($form);
 }

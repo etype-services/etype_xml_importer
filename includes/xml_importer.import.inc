@@ -195,9 +195,13 @@ function etype_xml_importer_olive_import() {
 
                     /* parse article xhtml from link file */
                     preg_match("/<prism:section>([^<]+)/", $ar_xml, $coincidencias);
-                    /* ignore classifieds */
-                    if ($coincidencias[1] == 'Classifieds') {
-                      continue;
+                    /* ignore classifieds? */
+                    $etype_xml_import_classifieds = variable_get('etype_xml_import_classifieds');
+                    echo $etype_xml_import_classifieds;
+                    if ($etype_xml_import_classifieds !== 1) {
+                      if ($coincidencias[1] == 'Classifieds') {
+                        continue;
+                      }
                     }
                     $array['section'] = $coincidencias[1];
 
