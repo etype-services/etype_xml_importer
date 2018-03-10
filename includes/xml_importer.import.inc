@@ -198,11 +198,11 @@ function etype_xml_importer_olive_import() {
                     /* ignore classifieds? */
                     $etype_xml_import_classifieds = variable_get('etype_xml_import_classifieds');
                     echo $etype_xml_import_classifieds;
-                    if ($etype_xml_import_classifieds !== 1) {
+                    //if ($etype_xml_import_classifieds !== 1) {
                       if ($coincidencias[1] == 'Classifieds') {
                         continue;
                       }
-                    }
+                    //}
                     $array['section'] = $coincidencias[1];
 
                     preg_match("/<dc:title>([^<]+)/", $ar_xml, $coincidencias);
