@@ -215,7 +215,7 @@ function etype_xml_importer_olive_import() {
 
                     preg_match("/<dc:title>([^<]+)/", $ar_xml, $coincidencias);
                     // echo 'title should be: ' . $coincidencias[1] . "\n";
-                    $array['title'] = $coincidencias[1];
+                    $array['title'] = substr(0, 255, $coincidencias[1]);
 
                     preg_match("/<prism:coverDate>([^<]+)/", $ar_xml, $coincidencias);
                     $array['pub_date'] = $coincidencias[1];
