@@ -3,7 +3,7 @@
 /* admin settings form */
 function etype_xml_importer_admin() {
 
-  $form = array();
+  $form = [];
 
   // Default Import URL
   $tmp = variable_get('etype_xml_base_import_url');
