@@ -41,8 +41,10 @@ function etype_xml_importer_add_nodes(&$node, $context) {
     $arr = $result['taxonomy_term'];
     reset($arr);
     $tid = key($arr);
+    echo $tid;
     $type = variable_get('etype_xml_node_type');
     $fields = field_info_instances("node", $type);
+    $node = node_load($node->nid);
     if (array_key_exists('field_section', $fields)) {
       $node->field_section['und'][0] = array('tid' => $tid);
     } else {
