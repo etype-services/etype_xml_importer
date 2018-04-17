@@ -32,7 +32,13 @@ function etype_xml_importer_action_info() {
  * Function attached to custom action to store selected node ids
  */
 function etype_xml_importer_add_nodes(&$node, $context) {
-  $term = taxonomy_get_term_by_name('obituaries');
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('name', 'Obituaries')
+    ->execute();
+  var_dump($result);
+  exit;
   $type = variable_get('etype_xml_node_type');
   $fields = field_info_instances("node", $type);
   if (array_key_exists('field_section', $fields)) {
