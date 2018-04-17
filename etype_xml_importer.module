@@ -19,7 +19,7 @@ function etype_xml_importer_action_info() {
   return [
     'etype_xml_importer_add_nodes' => [
       'type' => 'node',
-      'label' => t('Add nodes to Section'),
+      'label' => t('Add nodes to section'),
       'configurable' => FALSE,
       'triggers' => ['any'],
     ],
@@ -33,7 +33,9 @@ function etype_xml_importer_action_info() {
  */
 function etype_xml_importer_add_nodes(&$node, $context) {
   $term = taxonomy_get_term_by_name('obituaries');
-  var_dump($term);
+  $type = variable_get('etype_xml_node_type');
+  $fields = field_info_instances("node", $type);
+  dpm($fields);
 }
 
 /**
