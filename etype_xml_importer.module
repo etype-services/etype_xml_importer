@@ -12,6 +12,31 @@ function etype_xml_importer_permission() {
 }
 
 /**
+ * @return array
+ * Create custom VBO action
+ */
+function etype_xml_importer_action_info() {
+  return [
+    'etype_xml_importer_add_nodes' => [
+      'type' => 'node',
+      'label' => t('Add nodes to Section'),
+      'configurable' => FALSE,
+      'triggers' => ['any'],
+    ],
+  ];
+}
+
+/**
+ * @param $node
+ * @param $context
+ * Function attached to custom action to store selected node ids
+ */
+function etype_xml_importer_add_nodes(&$node, $context) {
+  $term = taxonomy_get_term_by_name();
+  var_dump($term);
+}
+
+/**
  * add import and admin urls
  * @return array
  */
