@@ -37,16 +37,19 @@ function etype_xml_importer_add_nodes(&$node, $context) {
     ->entityCondition('entity_type', 'taxonomy_term')
     ->propertyCondition('name', 'Obituaries')
     ->execute();
-  var_dump($result);
-  exit;
-  $type = variable_get('etype_xml_node_type');
-  $fields = field_info_instances("node", $type);
-  if (array_key_exists('field_section', $fields)) {
-    $node->field_section['und'][0] = array('tid' => $term->tid);
-  } else {
-    $node->field_category['und'][0] = array('tid' => $term->tid);
+  if (isset ($result['taxonomy_term'])) {
+    $arr = $result['taxonomy_term'];
+    reset($arr);
+    $tid = key($arr);
+    $type = variable_get('etype_xml_node_type');
+    $fields = field_info_instances("node", $type);
+    if (array_key_exists('field_section', $fields)) {
+      $node->field_section['und'][0] = array('tid' => $tid);
+    } else {
+      $node->field_category['und'][0] = array('tid' => $tid);
+    }
+    node_save($node);
   }
-  node_save($node);
 }
 
 /**
