@@ -32,7 +32,7 @@ function etype_xml_importer_action_info() {
  * Function attached to custom action to store selected node ids
  */
 function etype_xml_importer_add_nodes(&$node, $context) {
-  $term = taxonomy_get_term_by_name();
+  $term = taxonomy_get_term_by_name('obituaries');
   var_dump($term);
 }
 
