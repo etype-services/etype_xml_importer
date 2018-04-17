@@ -26,16 +26,20 @@ function etype_xml_importer_action_info() {
   ];
 }
 
-function etype_xml_importer_add_nodes_form($context) {
+function etype_xml_importer_add_nodes_form(&$node, $context) {
 
-  var_dump($context);
+  var_dump($node);
   $form = [];
 
   return $form;
 }
 
 function etype_xml_importer_add_nodes_submit($form, &$form_state) {
-
+  $query = new EntityFieldQuery;
+  $result = $query
+    ->entityCondition('entity_type', 'taxonomy_term')
+    ->propertyCondition('name', ['Obituaries', 'Sports', 'Opinion'], "IN")
+    ->execute();
 }
 
 /**
