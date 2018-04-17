@@ -35,7 +35,8 @@ function etype_xml_importer_add_nodes(&$node, $context) {
   $term = taxonomy_get_term_by_name('obituaries');
   $type = variable_get('etype_xml_node_type');
   $fields = field_info_instances("node", $type);
-  dpm($fields);
+  var_dump($fields);
+  exit;
 }
 
 /**
