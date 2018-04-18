@@ -5,5 +5,3 @@ core = 7.x
 project = "etype_xml_importer"
 dependencies[] = entity
 dependencies[] = etype
-dependencies[] = views_bulk_operations
-dependencies[] = admin_views

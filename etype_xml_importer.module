@@ -12,65 +12,6 @@ function etype_xml_importer_permission() {
 }
 
 /**
- * @return array
- * Create custom VBO action
- */
-function etype_xml_importer_action_info() {
-  return [
-    'etype_xml_importer_add_nodes' => [
-      'type' => 'node',
-      'label' => t('Add nodes to section'),
-      'configurable' => TRUE,
-      'triggers' => ['any'],
-    ],
-  ];
-}
-
-function etype_xml_importer_add_nodes_form(&$node, $context) {
-
-  var_dump($node);
-  $form = [];
-
-  return $form;
-}
-
-function etype_xml_importer_add_nodes_submit($form, &$form_state) {
-  $query = new EntityFieldQuery;
-  $result = $query
-    ->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('name', ['Obituaries', 'Sports', 'Opinion'], "IN")
-    ->execute();
-}
-
-/**
- * @param $node
- * @param $context
- * Function attached to custom action to store selected node ids
- */
-function etype_xml_importer_add_nodes(&$node, $context) {
-  $query = new EntityFieldQuery;
-  $result = $query
-    ->entityCondition('entity_type', 'taxonomy_term')
-    ->propertyCondition('name', ['Obituaries', 'Sports', 'Opinion'], "IN")
-    ->execute();
-  if (isset ($result['taxonomy_term'])) {
-    $arr = $result['taxonomy_term'];
-    reset($arr);
-    $tid = key($arr);
-    echo $tid;
-    $type = variable_get('etype_xml_node_type');
-    $fields = field_info_instances("node", $type);
-    $node = node_load($node->nid);
-    if (array_key_exists('field_section', $fields)) {
-      $node->field_section['und'][0] = array('tid' => $tid);
-    } else {
-      $node->field_category['und'][0] = array('tid' => $tid);
-    }
-    node_save($node);
-  }
-}
-
-/**
  * add import and admin urls
  * @return array
  */
