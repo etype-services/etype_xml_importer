@@ -94,6 +94,14 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_byline_field', 'field_dateline'),
   );
 
+  $form['etype_xml_importer_advanced']['etype_xml_date_field'] = array(
+    '#title' => t('Cover Display Date field'),
+    '#type' => 'select',
+    '#description' => 'The Drupal field to use for the imported Cover Display Date.',
+    '#options' => $fields,
+    '#default_value' => variable_get('etype_xml_date_field', 'field_date1'),
+  );
+
   $form['etype_xml_importer_advanced']['etype_xml_import_classifieds'] = array(
     '#title' => t('Check to import Olive classified section.'),
     '#type' => 'checkbox',
