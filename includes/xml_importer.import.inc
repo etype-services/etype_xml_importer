@@ -291,10 +291,7 @@ function etype_xml_importer_olive_import() {
                     }
                     /* Images now part of $array */
                     // print_r ($array);
-                    echo $array['pub_date'] . "\n";
-                    $date = new DateTime($array['pub_date']);
-                    // $field_date = $date->format('Y-m-d 00:00:00');
-                    $field_date = strtotime($array['pub_date']);
+                    $pub_date = strtotime($array['pub_date']);
 
                     $node = array(
                       'title' => $array['title'],
@@ -303,13 +300,13 @@ function etype_xml_importer_olive_import() {
                       // 'field_kicker' => $array['slugline'], deprecated
                       'field_subhead' => $array['slugline'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
-                      'field_date1' => $field_date, // Laurel Outlook
+                      'field_date1' => $pub_date, // Laurel Outlook
                       'images' => $array['images'],
                     );
 
                     // print_r($node);
 
-                    $values['created'] = strtotime($array['pub_date']);
+                    $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
                     // exit;
                     $i++;
