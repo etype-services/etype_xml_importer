@@ -124,7 +124,6 @@ function etype_xml_importer_olive_import() {
 
   // Settings
   $byline_field = variable_get('etype_xml_byline_field', 'field_dateline');
-  $date_field = variable_get('etype_xml_date_field', 'field_date1');
 
   // Import URL, with commented out testing option, and check for trailing slash
   // $base_import_url = 'http://test.etypegoogle4.com/xml-import/';
@@ -300,7 +299,7 @@ function etype_xml_importer_olive_import() {
                       // 'field_kicker' => $array['slugline'], deprecated
                       'field_subhead' => $array['slugline'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
-                      $date_field => $array['pub_date'],
+                      'field_date1' => $array['pub_date'], // Laurel Outlook
                       'images' => $array['images'],
                     );
 
