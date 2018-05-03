@@ -291,7 +291,8 @@ function etype_xml_importer_olive_import() {
                     }
                     /* Images now part of $array */
                     // print_r ($array);
-                    $date = new DateTime('2000-01-01');
+                    echo $array['pub_date'] . "\n";
+                    $date = new DateTime($array['pub_date']);
                     $field_date = $date->format('m/d/Y');
 
                     $node = array(
