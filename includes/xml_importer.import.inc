@@ -291,7 +291,6 @@ function etype_xml_importer_olive_import() {
                     }
                     /* Images now part of $array */
                     // print_r ($array);
-                    echo $array['pub_date']; exit;
                     $pub_date = strtotime($array['pub_date']);
 
                     $node = array(
@@ -301,7 +300,7 @@ function etype_xml_importer_olive_import() {
                       // 'field_kicker' => $array['slugline'], deprecated
                       'field_subhead' => $array['slugline'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
-                      'field_date1' => $array['pub_date'], // Laurel Outlook
+                      'field_date1' => $array['pub_date'] . ' 00:00:00', // Laurel Outlook
                       'images' => $array['images'],
                     );
 
