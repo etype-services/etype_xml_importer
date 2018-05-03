@@ -293,7 +293,7 @@ function etype_xml_importer_olive_import() {
                     // print_r ($array);
                     echo $array['pub_date'] . "\n";
                     $date = new DateTime($array['pub_date']);
-                    $field_date = $date->format('m/d/Y');
+                    $field_date = $date->format('Y-m-d 00:00:00');
 
                     $node = array(
                       'title' => $array['title'],
