@@ -38,7 +38,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
           break;
 
-        case 'field_kicker':
+        /*case 'field_kicker':
           if (field_info_instance('node', "field_kicker", $node_type)) {
             switch ($kicker_format) {
               case 'full_html':
@@ -53,7 +53,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
                 $wrapper->field_kicker->set($v);
             }
           }
-          break;
+          break;*/
 
         case 'field_pulled_quote':
           if (field_info_instance('node', "field_pulled_quote", $node_type)) {
