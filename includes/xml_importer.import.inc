@@ -249,6 +249,14 @@ function etype_xml_importer_olive_import() {
                       $array['byline'] = '';
                     }
 
+                    // get the pull quote
+                    preg_match("'<xhtml:p prism:class=\"pullQuote\">(.*?)</xhtml:b>'s", $ar_xml, $coincidencias);
+                    if (isset($coincidencias[1])) {
+                      $array['pulled_quote'] = trim(ucwords(strtolower(strip_tags($coincidencias[1]))));
+                    } else {
+                      $array['pulled_quote'] = '';
+                    }
+
                     // echo $ar_xml;
 
                     /* Images */
@@ -299,6 +307,7 @@ function etype_xml_importer_olive_import() {
                       'body' => $array['body'],
                       // 'field_kicker' => $array['slugline'], deprecated
                       'field_subhead' => $array['slugline'],
+                      'field_pulled_quote' => $array['pulled_quote'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
                       'field_date1' => $pub_date, // Laurel Outlook
                       'images' => $array['images'],
