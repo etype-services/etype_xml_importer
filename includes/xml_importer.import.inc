@@ -95,7 +95,9 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
         case 'images':
           $files = array();
           foreach ($v as $arr) {
-            $file = file_save_data(file_get_contents($arr['path']), 'public://' . $arr['name']);
+            /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
+            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
+            $file = file_save_data(file_get_contents($arr['path']), 'public://' . $rand . '_' . $arr['name']);
             $file->display = '1';
             $file->description = $arr['caption'];
             /* Set caption if image field caption enabled, otherwise set
@@ -288,9 +290,7 @@ function etype_xml_importer_olive_import() {
                           preg_match("'<pam:mediaReference pam:refid=\"(.*)\" />'", $item, $arr);
                           if (isset($arr[1])) {
                             $iarray = array();
-                            /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
-                            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
-                            $iarray['image'] = $rand . $arr[1];
+                            $iarray['image'] = $arr[1];
                             preg_match("'<pam:caption>(.*?)</pam:caption>'s", $item, $arr);
                             if (isset($arr[1])) {
                               $iarray['caption'] = trim(strip_tags($arr[1]));
