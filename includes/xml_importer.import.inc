@@ -279,7 +279,7 @@ function etype_xml_importer_olive_import() {
                     /* Images */
                     $images = array();
                     preg_match_all("'<pam:media>(.*?)</pam:media>'s", $ar_xml, $coincidencias);
-                    // loop over matches and extracat data
+                    // loop over matches and extract data
                     if (! empty($coincidencias[1])) {
                       $matches = $coincidencias[1];
                       foreach ($matches as $item) {
@@ -288,7 +288,8 @@ function etype_xml_importer_olive_import() {
                           preg_match("'<pam:mediaReference pam:refid=\"(.*)\" />'", $item, $arr);
                           if (isset($arr[1])) {
                             $iarray = array();
-                            $iarray['image'] = $arr[1];
+                            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 5);
+                            $iarray['image'] = $rand . $arr[1];
                             preg_match("'<pam:caption>(.*?)</pam:caption>'s", $item, $arr);
                             if (isset($arr[1])) {
                               $iarray['caption'] = trim(strip_tags($arr[1]));
