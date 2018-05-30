@@ -288,6 +288,7 @@ function etype_xml_importer_olive_import() {
                           preg_match("'<pam:mediaReference pam:refid=\"(.*)\" />'", $item, $arr);
                           if (isset($arr[1])) {
                             $iarray = array();
+                            /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
                             $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
                             $iarray['image'] = $rand . $arr[1];
                             preg_match("'<pam:caption>(.*?)</pam:caption>'s", $item, $arr);
