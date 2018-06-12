@@ -11,7 +11,8 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $entity = entity_create($entity_type, $values);
   $wrapper = entity_metadata_wrapper($entity_type, $entity);
   $node_type = variable_get('etype_xml_node_type');
-  $kicker_format = variable_get('etype_xml_kicker_format', 'plain_text');
+  $subhead_format = variable_get('etype_xml_subhead_format', 'plain_text');
+  $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
 
   if (count($item) > 0) {
     foreach ($item as $k => $v) {
@@ -40,7 +41,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'field_pulled_quote':
           if (field_info_instance('node', "field_pulled_quote", $node_type)) {
-            switch ($kicker_format) {
+            switch ($pullquote_format) {
               case 'full_html':
                 $wrapper->field_pulled_quote->set(array(
                     'value' => $v,
@@ -57,7 +58,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'field_subhead':
           if (field_info_instance('node', "field_subhead", $node_type)) {
-            switch ($kicker_format) {
+            switch ($subhead_format) {
               case 'full_html':
                 $wrapper->field_subhead->set(array(
                     'value' => $v,
