@@ -121,7 +121,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         default:
           if (field_info_instance('node', "$k", $node_type)) {
-            $wrapper->$k->set($v);
+            //$wrapper->$k->set($v);
           }
       }
     }
