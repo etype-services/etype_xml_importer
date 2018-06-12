@@ -116,7 +116,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $file = (array) $file;
             $files[] = $file;
           }
-          $wrapper->field_image->set($files);
+          // $wrapper->field_image->set($files);
           break;
 
         default:
