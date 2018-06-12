@@ -72,12 +72,20 @@ function etype_xml_importer_admin() {
     $formats[$format->format] = $format->name;
   }
 
-  $form['etype_xml_importer_advanced']['etype_xml_kicker_format'] = array(
-    '#title' => t('Kicker format'),
+  $form['etype_xml_importer_advanced']['etype_xml_subhead_format'] = array(
+    '#title' => t('Subhead format'),
     '#type' => 'select',
-    '#description' => 'Select the "kicker" field text format.',
+    '#description' => 'Select the "Subhead" field text format.',
     '#options' => $formats,
-    '#default_value' => variable_get('etype_xml_kicker_format', 'plain_text'),
+    '#default_value' => variable_get('etype_xml_subhead_format', 'plain_text'),
+  );
+
+  $form['etype_xml_importer_advanced']['etype_xml_pulled_quote_format'] = array(
+    '#title' => t('Pull Quote format'),
+    '#type' => 'select',
+    '#description' => 'Select the "Pull Quote" field text format.',
+    '#options' => $formats,
+    '#default_value' => variable_get('etype_xml_pulled_quote_format', 'plain_text'),
   );
 
   $fields_info = field_info_instances('node', $default_type);
