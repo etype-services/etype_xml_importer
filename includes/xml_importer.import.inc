@@ -102,14 +102,14 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $file->description = $arr['caption'];
             /* Set caption if image field caption enabled, otherwise set
             title */
+            $caption = substr($arr['caption'], 0, 255);
             if (module_exists('image_field_caption')) {
               $file->image_field_caption = array(
-                'value' => $arr['caption'],
-                'format' => 'full_html'
+                'value' => $caption,
+                'format' => 'plain_text'
               );
             } else {
               /* truncate to fit */
-              $caption = substr($arr['caption'], 0, 255);
               $file->title = $caption;
             }
             $file = file_save($file);
