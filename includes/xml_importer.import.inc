@@ -105,7 +105,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             if (module_exists('image_field_caption')) {
               $file->image_field_caption = array(
                 'value' => $arr['caption'],
-                'format' => 'plain_text'
+                'format' => 'full_html'
               );
             } else {
               /* truncate to fit */
@@ -116,7 +116,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $file = (array) $file;
             $files[] = $file;
           }
-          // $wrapper->field_image->set($files);
+          $wrapper->field_image->set($files);
           break;
 
         default:
