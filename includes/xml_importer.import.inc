@@ -110,9 +110,6 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             } else {
               /* truncate to fit */
               $caption = substr($arr['caption'], 0, 255);
-              if (!mb_check_encoding($caption)) {
-                $caption = Encoding::toUTF8($caption);
-              }
               $file->title = $caption;
             }
             $file = file_save($file);
