@@ -51,7 +51,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
                 break;
 
               default:
-                $wrapper->field_kicker->set($v);
+                $wrapper->field_pulled_quote->set($v);
             }
           }
           break;
