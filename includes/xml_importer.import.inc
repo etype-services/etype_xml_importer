@@ -316,7 +316,7 @@ function etype_xml_importer_olive_import() {
                       'images' => $array['images'],
                     );
 
-                    print_r($node);
+                    // print_r($node);
 
                     $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
