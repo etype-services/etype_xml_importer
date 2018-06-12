@@ -38,11 +38,28 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
           break;
 
-        case 'field_kicker':
+        /*case 'field_kicker':
           if (field_info_instance('node', "field_kicker", $node_type)) {
             switch ($kicker_format) {
               case 'full_html':
                 $wrapper->field_kicker->set(array(
+                    'value' => $v,
+                    'format' => 'full_html'
+                  )
+                );
+                break;
+
+              default:
+                $wrapper->field_kicker->set($v);
+            }
+          }
+          break;*/
+
+        case 'field_pulled_quote':
+          if (field_info_instance('node', "field_pulled_quote", $node_type)) {
+            switch ($kicker_format) {
+              case 'full_html':
+                $wrapper->field_pulled_quote->set(array(
                     'value' => $v,
                     'format' => 'full_html'
                   )
@@ -78,7 +95,9 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
         case 'images':
           $files = array();
           foreach ($v as $arr) {
-            $file = file_save_data(file_get_contents($arr['path']), 'public://' . $arr['name']);
+            /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
+            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
+            $file = file_save_data(file_get_contents($arr['path']), 'public://' . $rand . '_' . $arr['name']);
             $file->display = '1';
             $file->description = $arr['caption'];
             /* Set caption if image field caption enabled, otherwise set
@@ -89,7 +108,9 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
                 'format' => 'plain_text'
               );
             } else {
-              $file->title = $arr['caption'];
+              /* truncate to fit */
+              $caption = substr($arr['caption'], 0, 255);
+              $file->title = $caption;
             }
             $file = file_save($file);
             $file = (array) $file;
@@ -215,7 +236,7 @@ function etype_xml_importer_olive_import() {
 
                     preg_match("/<dc:title>([^<]+)/", $ar_xml, $coincidencias);
                     // echo 'title should be: ' . $coincidencias[1] . "\n";
-                    $array['title'] = $coincidencias[1];
+                    $array['title'] = substr($coincidencias[1], 0, 255);
 
                     preg_match("/<prism:coverDate>([^<]+)/", $ar_xml, $coincidencias);
                     $array['pub_date'] = $coincidencias[1];
@@ -247,12 +268,20 @@ function etype_xml_importer_olive_import() {
                       $array['byline'] = '';
                     }
 
+                    // get the pull quote
+                    preg_match("'<xhtml:p prism:class=\"pullQuote\">(.*?)</xhtml:b>'s", $ar_xml, $coincidencias);
+                    if (isset($coincidencias[1])) {
+                      $array['pulled_quote'] = trim(ucwords(strtolower(strip_tags($coincidencias[1]))));
+                    } else {
+                      $array['pulled_quote'] = '';
+                    }
+
                     // echo $ar_xml;
 
                     /* Images */
                     $images = array();
                     preg_match_all("'<pam:media>(.*?)</pam:media>'s", $ar_xml, $coincidencias);
-                    // loop over matches and extracat data
+                    // loop over matches and extract data
                     if (! empty($coincidencias[1])) {
                       $matches = $coincidencias[1];
                       foreach ($matches as $item) {
@@ -289,6 +318,7 @@ function etype_xml_importer_olive_import() {
                     }
                     /* Images now part of $array */
                     // print_r ($array);
+                    $pub_date = strtotime($array['pub_date']);
 
                     $node = array(
                       'title' => $array['title'],
@@ -296,14 +326,16 @@ function etype_xml_importer_olive_import() {
                       'body' => $array['body'],
                       // 'field_kicker' => $array['slugline'], deprecated
                       'field_subhead' => $array['slugline'],
+                      'field_pulled_quote' => $array['pulled_quote'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
+                      'field_date1' => $pub_date, // Laurel Outlook
                       'images' => $array['images'],
                     );
+
                     // print_r($node);
 
-                    $values['created'] = strtotime($array['pub_date']);
-                    echo $entry . ": " . $array['title'] . "<br>\n";
-                    // etype_xml_importer_entity_create($node, $values);
+                    $values['created'] = $pub_date;
+                    etype_xml_importer_entity_create($node, $values);
                     // exit;
                     $i++;
                     // echo $i . ' ';
