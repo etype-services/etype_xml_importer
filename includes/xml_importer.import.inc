@@ -248,9 +248,9 @@ function etype_xml_importer_olive_import() {
                     preg_match("'<xhtml:p prism:class=\"byline\">(.*?)</xhtml:b>'s", $ar_xml, $coincidencias);
                     if (isset($coincidencias[1])) {
                       $temp = preg_replace("/<xhtml:br \\/>/", " ", $coincidencias[1]);
-                      $temp = trim(ucwords(strtolower($temp)));
+                      $temp = trim(strip_tags($temp));
                       $temp = preg_replace("/^by\s*/i", "", $temp);
-                      $array['byline'] = strip_tags($temp);
+                      $array['byline'] = ucwords(strtolower($temp));
                     } else {
                       $array['byline'] = '';
                     }
