@@ -16,73 +16,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
   if (count($item) > 0) {
     foreach ($item as $k => $v) {
-      switch ($k) {
 
-        case 'title':
-          $wrapper->$k->set($v);
-          break;
-
-        case 'body':
-          if (isset($item['summary'])) {
-            $wrapper->body->set(array(
-                'value' => $v,
-                'summary' => $item['summary'],
-                'format' => 'full_html'
-              )
-            );
-          } else {
-            $wrapper->body->set(array(
-                'value' => $v,
-                'format' => 'full_html'
-              )
-            );
-          }
-          break;
-
-        case 'field_pulled_quote':
-          if (field_info_instance('node', "field_pulled_quote", $node_type)) {
-            switch ($pullquote_format) {
-              case 'full_html':
-                $wrapper->field_pulled_quote->set(array(
-                    'value' => $v,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
-
-              default:
-                $wrapper->field_pulled_quote->set($v);
-            }
-          }
-          break;
-
-        case 'field_subhead':
-          if (field_info_instance('node', "field_subhead", $node_type)) {
-            switch ($subhead_format) {
-              case 'full_html':
-                $wrapper->field_subhead->set(array(
-                    'value' => $v,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
-
-              default:
-                $wrapper->field_subhead->set($v);
-            }
-          }
-          break;
-
-        case 'summary':
-          break;
-
-
-
-        default:
-          if (field_info_instance('node', "$k", $node_type)) {
-            $wrapper->$k->set($v);
-          }
-      }
     }
     $wrapper->save(TRUE);
   }
