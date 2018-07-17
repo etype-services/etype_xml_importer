@@ -73,7 +73,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           if (field_info_instance('node', "field_mt_subheader_body", $node_type)) {
             switch ($subhead_format) {
               case 'full_html':
-                $wrapper->field_subhead->set(array(
+                $wrapper->field_mt_subheader_body->set(array(
                     'value' => $v,
                     'format' => 'full_html'
                   )
@@ -332,7 +332,7 @@ function etype_xml_importer_olive_import() {
                       'images' => $array['images'],
                     );
 
-                    // print_r($node);
+                    print_r($node);
 
                     $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
