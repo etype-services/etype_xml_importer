@@ -21,7 +21,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
       }
     }
-    //$wrapper->save(TRUE);
+    $wrapper->save(TRUE);
   }
 }
 
@@ -89,7 +89,7 @@ function etype_xml_importer_olive_import() {
       /* Loop over found files and do the extraction */
       if (count($entries) > 0) {
 
-        $node_type = variable_get('etype_xml_node_type');
+        $node_type = variable_get('etype_xml_node_type', 'article');
         $values = array(
           'type' => $node_type,
           'uid' => $user->uid,
