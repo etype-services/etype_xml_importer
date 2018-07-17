@@ -39,39 +39,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
           break;
 
-        case 'field_pulled_quote':
-          if (field_info_instance('node', "field_pulled_quote", $node_type)) {
-            switch ($pullquote_format) {
-              case 'full_html':
-                $wrapper->field_pulled_quote->set(array(
-                    'value' => $v,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
 
-              default:
-                $wrapper->field_pulled_quote->set($v);
-            }
-          }
-          break;
-
-        case 'field_subhead':
-          if (field_info_instance('node', "field_subhead", $node_type)) {
-            switch ($subhead_format) {
-              case 'full_html':
-                $wrapper->field_subhead->set(array(
-                    'value' => $v,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
-
-              default:
-                $wrapper->field_subhead->set($v);
-            }
-          }
-          break;
 
         case 'summary':
           break;
@@ -322,7 +290,7 @@ function etype_xml_importer_olive_import() {
                     // print_r($node);
 
                     $values['created'] = $pub_date;
-                    //etype_xml_importer_entity_create($node, $values);
+                    etype_xml_importer_entity_create($node, $values);
                     // exit;
                     $i++;
                     // echo $i . ' ';
