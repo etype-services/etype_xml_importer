@@ -70,6 +70,20 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
                 $wrapper->field_subhead->set($v);
             }
           }
+          if (field_info_instance('node', "field_mt_subheader_body", $node_type)) {
+            switch ($subhead_format) {
+              case 'full_html':
+                $wrapper->field_subhead->set(array(
+                    'value' => $v,
+                    'format' => 'full_html'
+                  )
+                );
+                break;
+
+              default:
+                $wrapper->field_mt_subheader_body->set($v);
+            }
+          }
           break;
 
         case 'summary':
