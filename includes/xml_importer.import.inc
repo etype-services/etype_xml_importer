@@ -130,7 +130,7 @@ function etype_xml_importer_olive_import() {
 
   // Import URL, with commented out testing option, and check for trailing slash
   // $base_import_url = 'http://test.etypegoogle4.com/xml-import/';
-  $base_import_url = variable_get('etype_xml_base_import_url');
+  $base_import_url = variable_get('etype_xml_base_import_url', 'http://olivexml.etypeservices.com/olivexml/');
   if (substr($base_import_url, -1) !== '/') {
     $base_import_url = $base_import_url . '/';
   }
