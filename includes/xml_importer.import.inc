@@ -14,7 +14,15 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $subhead_format = variable_get('etype_xml_subhead_format', 'plain_text');
   $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
 
+  if (count($item) > 0) {
+    foreach ($item as $k => $v) {
+      switch ($k) {
 
+
+      }
+    }
+    $wrapper->save(TRUE);
+  }
 }
 
 /**
