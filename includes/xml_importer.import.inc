@@ -21,7 +21,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
       }
     }
-    $wrapper->save(TRUE);
+    //$wrapper->save(TRUE);
   }
 }
 
