@@ -72,6 +72,20 @@ function etype_xml_importer_admin() {
     $formats[$format->format] = $format->name;
   }
 
+  $fields_info = field_info_instances('node', $default_type);
+  $fields = [];
+  foreach($fields_info as $field) {
+    $fields[$field['field_name']] = $field['label'];
+  }
+
+  $form['etype_xml_importer_advanced']['etype_xml_subhead_field'] = array(
+    '#title' => t('Subhead field'),
+    '#type' => 'select',
+    '#description' => 'The Drupal field to use for the imported subhead.',
+    '#options' => $fields,
+    '#default_value' => variable_get('etype_xml_subhead_field', 'field_subhead'),
+  );
+
   $form['etype_xml_importer_advanced']['etype_xml_subhead_format'] = array(
     '#title' => t('Subhead format'),
     '#type' => 'select',
@@ -87,12 +101,6 @@ function etype_xml_importer_admin() {
     '#options' => $formats,
     '#default_value' => variable_get('etype_xml_pulled_quote_format', 'plain_text'),
   );
-
-  $fields_info = field_info_instances('node', $default_type);
-  $fields = [];
-  foreach($fields_info as $field) {
-    $fields[$field['field_name']] = $field['label'];
-  }
 
   $form['etype_xml_importer_advanced']['etype_xml_byline_field'] = array(
     '#title' => t('Byline field'),

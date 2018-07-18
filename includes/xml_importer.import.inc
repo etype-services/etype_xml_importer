@@ -11,6 +11,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $entity = entity_create($entity_type, $values);
   $wrapper = entity_metadata_wrapper($entity_type, $entity);
   $node_type = variable_get('etype_xml_node_type', 'article');
+  $subhead_field = variable_get('etype_xml_subhead_field', 'field_subhead');
   $subhead_format = variable_get('etype_xml_subhead_format', 'plain_text');
   $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
 
@@ -55,34 +56,18 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
           break;
 
-        case 'field_subhead':
-          if (field_info_instance('node', "field_subhead", $node_type)) {
-            switch ($subhead_format) {
-              case 'full_html':
-                $wrapper->field_subhead->set(array(
-                    'value' => $v,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
+        case $subhead_field:
+          switch ($subhead_format) {
+            case 'full_html':
+              $wrapper->$subhead_field->set(array(
+                  'value' => $v,
+                  'format' => 'full_html'
+                )
+              );
+              break;
 
-              default:
-                $wrapper->field_subhead->set($v);
-            }
-          }
-          if (field_info_instance('node', "field_mt_subheader_body", $node_type)) {
-            switch ($subhead_format) {
-              case 'full_html':
-                $wrapper->field_mt_subheader_body->set(array(
-                    'value' => $v,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
-
-              default:
-                $wrapper->field_mt_subheader_body->set($v);
-            }
+            default:
+              $wrapper->$subhead_field->set($v);
           }
           break;
 
@@ -140,6 +125,7 @@ function etype_xml_importer_olive_import() {
 
   // Settings
   $byline_field = variable_get('etype_xml_byline_field', 'field_dateline');
+  $subhead_field = variable_get('etype_xml_subhead_field', 'field_subhead');
 
   // Import URL, with commented out testing option, and check for trailing slash
   // $base_import_url = 'http://test.etypegoogle4.com/xml-import/';
@@ -324,10 +310,9 @@ function etype_xml_importer_olive_import() {
                       'title' => $array['title'],
                       'summary' => strip_tags($array['description']),
                       'body' => $array['body'],
-                      // 'field_kicker' => $array['slugline'], deprecated
-                      'field_subhead' => $array['slugline'],
                       'field_pulled_quote' => $array['pulled_quote'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
+                      $subhead_field => $array['slugline'],
                       'field_date1' => $pub_date, // Laurel Outlook
                       'images' => $array['images'],
                     );
