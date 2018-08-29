@@ -26,22 +26,85 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
           $text = utf8_encode($v);
 
+          if (isset($item['summary'])) {
+            $wrapper->body->set(array(
+                'value' => $text,
+                'summary' => $item['summary'],
+                'format' => 'full_html'
+              )
+            );
+          } else {
+            $wrapper->body->set(array(
+                'value' => $text,
+                'format' => 'full_html'
+              )
+            );
+          }
           break;
 
         case 'field_pulled_quote':
 
+          $text = utf8_encode($v);
+          if (field_info_instance('node', "field_pulled_quote", $node_type)) {
+            switch ($pullquote_format) {
+              case 'full_html':
+                $wrapper->field_pulled_quote->set(array(
+                    'value' => $text,
+                    'format' => 'full_html'
+                  )
+                );
+                break;
 
+              default:
+                $wrapper->field_pulled_quote->set($text);
+            }
+          }
           break;
 
         case $subhead_field:
+          $text = utf8_encode($v);
+          switch ($subhead_format) {
+            case 'full_html':
+              $wrapper->$subhead_field->set(array(
+                  'value' => $text,
+                  'format' => 'full_html'
+                )
+              );
+              break;
 
+            default:
+              $wrapper->$subhead_field->set($v);
+          }
           break;
 
         case 'summary':
           break;
 
         case 'images':
-
+          $files = array();
+          foreach ($v as $arr) {
+            /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
+            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
+            $file = file_save_data(file_get_contents($arr['path']), 'public://' . $rand . '_' . $arr['name']);
+            $file->display = '1';
+            $file->description = $arr['caption'];
+            /* Set caption if image field caption enabled, otherwise set
+            title */
+            if (module_exists('image_field_caption')) {
+              $file->image_field_caption = array(
+                'value' => $arr['caption'],
+                'format' => 'plain_text'
+              );
+            } else {
+              /* truncate to fit */
+              $caption = substr($arr['caption'], 0, 255);
+              $file->title = $caption;
+            }
+            $file = file_save($file);
+            $file = (array) $file;
+            $files[] = $file;
+          }
+          //$wrapper->field_image->set($files);
           break;
 
         default:
