@@ -30,21 +30,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'field_pulled_quote':
 
-          $text = utf8_encode($v);
-          if (field_info_instance('node', "field_pulled_quote", $node_type)) {
-            switch ($pullquote_format) {
-              case 'full_html':
-                $wrapper->field_pulled_quote->set(array(
-                    'value' => $text,
-                    'format' => 'full_html'
-                  )
-                );
-                break;
 
-              default:
-                $wrapper->field_pulled_quote->set($text);
-            }
-          }
           break;
 
         case $subhead_field:
