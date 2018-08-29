@@ -94,7 +94,8 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             } else {
               /* truncate to fit */
               $caption = substr($arr['caption'], 0, 255);
-              $file->title = utf8_encode($caption);
+              //$file->title = utf8_encode($caption);
+              $file->title = $caption;
             }
             $file = file_save($file);
             $file = (array) $file;
@@ -109,7 +110,13 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
       }
     }
-    $wrapper->save(TRUE);
+    try {
+      if (!$wrapper->save(TRUE)) {
+        throw new Exception("wrapper not saved");
+      }
+    } catch(Exception $e) {
+      watchdog('etype_xml_importer', "Import Issue.", $variables = [], $severity = WATCHDOG_NOTICE);
+    }
   }
 }
 
