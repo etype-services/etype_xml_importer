@@ -16,7 +16,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
 
   if (count($item) > 0) {
-    $title = '';
+    $title = 'no title found';
     foreach ($item as $k => $v) {
       switch ($k) {
         case 'title':
