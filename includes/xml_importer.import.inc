@@ -41,30 +41,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         case 'images':
-          $files = array();
-          foreach ($v as $arr) {
-            /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
-            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
-            $file = file_save_data(file_get_contents($arr['path']), 'public://' . $rand . '_' . $arr['name']);
-            $file->display = '1';
-            $file->description = $arr['caption'];
-            /* Set caption if image field caption enabled, otherwise set
-            title */
-            if (module_exists('image_field_caption')) {
-              $file->image_field_caption = array(
-                'value' => $arr['caption'],
-                'format' => 'plain_text'
-              );
-            } else {
-              /* truncate to fit */
-              $caption = substr($arr['caption'], 0, 255);
-              $file->title = $caption;
-            }
-            $file = file_save($file);
-            $file = (array) $file;
-            $files[] = $file;
-          }
-          $wrapper->field_image->set($files);
+
           break;
 
         default:
