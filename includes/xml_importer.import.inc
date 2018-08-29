@@ -115,7 +115,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
     // try to continue and not stop the whole import
     try {
       if (!$wrapper->save(TRUE)) {
-        throw new Exception("wrapper not saved");
+        throw new Exception("Wrapper not saved");
       }
     } catch(Exception $e) {
       watchdog('etype_xml_importer', "Import Issue for $title.", $variables = [], $severity = WATCHDOG_NOTICE);
