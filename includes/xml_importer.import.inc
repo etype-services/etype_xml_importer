@@ -28,14 +28,14 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
           if (isset($item['summary'])) {
             $wrapper->body->set(array(
-                'value' => $body_text,
+                'value' => $text,
                 'summary' => $item['summary'],
                 'format' => 'full_html'
               )
             );
           } else {
             $wrapper->body->set(array(
-                'value' => $body_text,
+                'value' => $text,
                 'format' => 'full_html'
               )
             );
