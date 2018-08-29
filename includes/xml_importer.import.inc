@@ -34,19 +34,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         case $subhead_field:
-          $text = utf8_encode($v);
-          switch ($subhead_format) {
-            case 'full_html':
-              $wrapper->$subhead_field->set(array(
-                  'value' => $text,
-                  'format' => 'full_html'
-                )
-              );
-              break;
 
-            default:
-              $wrapper->$subhead_field->set($v);
-          }
           break;
 
         case 'summary':
