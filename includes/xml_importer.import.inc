@@ -24,17 +24,16 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'body':
 
-          $text = utf8_encode($v);
           if (isset($item['summary'])) {
             $wrapper->body->set(array(
-                'value' => $text,
+                'value' => $v,
                 'summary' => $item['summary'],
                 'format' => 'full_html'
               )
             );
           } else {
             $wrapper->body->set(array(
-                'value' => $text,
+                'value' => $v,
                 'format' => 'full_html'
               )
             );
@@ -43,29 +42,27 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'field_pulled_quote':
 
-          $text = utf8_encode($v);
           if (field_info_instance('node', "field_pulled_quote", $node_type)) {
             switch ($pullquote_format) {
               case 'full_html':
                 $wrapper->field_pulled_quote->set(array(
-                    'value' => $text,
+                    'value' => $v,
                     'format' => 'full_html'
                   )
                 );
                 break;
 
               default:
-                $wrapper->field_pulled_quote->set($text);
+                $wrapper->field_pulled_quote->set($v);
             }
           }
           break;
 
         case $subhead_field:
-          $text = utf8_encode($v);
           switch ($subhead_format) {
             case 'full_html':
               $wrapper->$subhead_field->set(array(
-                  'value' => $text,
+                  'value' => $v,
                   'format' => 'full_html'
                 )
               );
