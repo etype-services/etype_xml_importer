@@ -26,20 +26,6 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
           $text = utf8_encode($v);
 
-          if (isset($item['summary'])) {
-            $wrapper->body->set(array(
-                'value' => $text,
-                'summary' => $item['summary'],
-                'format' => 'full_html'
-              )
-            );
-          } else {
-            $wrapper->body->set(array(
-                'value' => $text,
-                'format' => 'full_html'
-              )
-            );
-          }
           break;
 
         case 'field_pulled_quote':
