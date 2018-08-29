@@ -118,7 +118,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
         throw new Exception("Wrapper not saved");
       }
     } catch(Exception $e) {
-      watchdog('etype_xml_importer', "Import Issue for $title.", $variables = [], $severity = WATCHDOG_NOTICE);
+      watchdog('etype_xml_importer', "Import failed for \"$title\".", $variables = [], $severity = WATCHDOG_NOTICE);
     }
   }
 }
