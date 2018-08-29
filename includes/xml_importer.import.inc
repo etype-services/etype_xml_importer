@@ -24,7 +24,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'body':
 
-          $body_text = mb_check_encoding($v, 'UTF-8') ? $v: utf8_encode($v);
+          $body_text = utf8_encode($v);
 
           if (isset($item['summary'])) {
             $wrapper->body->set(array(
