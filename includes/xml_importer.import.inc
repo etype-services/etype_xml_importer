@@ -16,6 +16,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
 
   if (count($item) > 0) {
+    $title = '';
     foreach ($item as $k => $v) {
       switch ($k) {
         case 'title':
@@ -111,6 +112,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           }
       }
     }
+    // try to continue and not stop the whole import
     try {
       if (!$wrapper->save(TRUE)) {
         throw new Exception("wrapper not saved");
