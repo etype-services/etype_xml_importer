@@ -23,16 +23,19 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         case 'body':
+
+          $body_text = mb_check_encoding($v, 'UTF-8') ? $v: utf8_encode($v);
+
           if (isset($item['summary'])) {
             $wrapper->body->set(array(
-                'value' => $v,
+                'value' => $body_text,
                 'summary' => $item['summary'],
                 'format' => 'full_html'
               )
             );
           } else {
             $wrapper->body->set(array(
-                'value' => $v,
+                'value' => $body_text,
                 'format' => 'full_html'
               )
             );
