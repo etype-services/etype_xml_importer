@@ -3,6 +3,21 @@
 /* admin settings form */
 function etype_xml_importer_admin() {
 
+
+  /* get available text formats and make into array */
+  $filter_formats = filter_formats();
+  $formats = [];
+  foreach($filter_formats as $format) {
+    $formats[$format->format] = $format->name;
+  }
+
+  /* get fields */
+  $fields_info = field_info_instances('node', $default_type);
+  $fields = [];
+  foreach($fields_info as $field) {
+    $fields[$field['field_name']] = $field['label'];
+  }
+
   $form = [];
 
   // Default Import URL
@@ -41,12 +56,28 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_cron_schedule'),
   );
 
-  /* importer settings */
+  $form['etype_xml_importer']['etype_xml_subhead_field'] = array(
+    '#title' => t('Subhead field'),
+    '#type' => 'select',
+    '#description' => 'The Drupal field to use for the imported subhead.',
+    '#options' => $fields,
+    '#default_value' => variable_get('etype_xml_subhead_field', 'field_subhead'),
+  );
+
+  $form['etype_xml_importer']['etype_xml_byline_field'] = array(
+    '#title' => t('Byline field'),
+    '#type' => 'select',
+    '#description' => 'The Drupal field to use for the imported byline.',
+    '#options' => $fields,
+    '#default_value' => variable_get('etype_xml_byline_field', 'field_dateline'),
+  );
+
+  /* advanced importer settings */
   $form['etype_xml_importer_advanced'] = array(
     '#type' => 'fieldset',
     '#title' => t('Advanced configuration'),
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
   );
 
   $form['etype_xml_importer_advanced']['etype_xml_base_import_url'] = array(
@@ -65,27 +96,6 @@ function etype_xml_importer_admin() {
     '#default_value' => $default_type,
   );
 
-  /* get available text formats and make into array */
-  $filter_formats = filter_formats();
-  $formats = [];
-  foreach($filter_formats as $format) {
-    $formats[$format->format] = $format->name;
-  }
-
-  $fields_info = field_info_instances('node', $default_type);
-  $fields = [];
-  foreach($fields_info as $field) {
-    $fields[$field['field_name']] = $field['label'];
-  }
-
-  $form['etype_xml_importer_advanced']['etype_xml_subhead_field'] = array(
-    '#title' => t('Subhead field'),
-    '#type' => 'select',
-    '#description' => 'The Drupal field to use for the imported subhead.',
-    '#options' => $fields,
-    '#default_value' => variable_get('etype_xml_subhead_field', 'field_subhead'),
-  );
-
   $form['etype_xml_importer_advanced']['etype_xml_subhead_format'] = array(
     '#title' => t('Subhead format'),
     '#type' => 'select',
@@ -100,14 +110,6 @@ function etype_xml_importer_admin() {
     '#description' => 'Select the "Pull Quote" field text format.',
     '#options' => $formats,
     '#default_value' => variable_get('etype_xml_pulled_quote_format', 'plain_text'),
-  );
-
-  $form['etype_xml_importer_advanced']['etype_xml_byline_field'] = array(
-    '#title' => t('Byline field'),
-    '#type' => 'select',
-    '#description' => 'The Drupal field to use for the imported byline.',
-    '#options' => $fields,
-    '#default_value' => variable_get('etype_xml_byline_field', 'field_dateline'),
   );
 
   $form['etype_xml_importer_advanced']['etype_xml_import_classifieds'] = array(
