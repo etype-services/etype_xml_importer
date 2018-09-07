@@ -3,6 +3,19 @@
 /* admin settings form */
 function etype_xml_importer_admin() {
 
+  // Default Import URL
+  $tmp = variable_get('etype_xml_base_import_url');
+  $etype_xml_base_import_url = empty($tmp)? 'http://olivexml.etypeservices.com/olivexml/': $tmp;
+
+  // Choose node type into which to import
+  $node_types = node_type_get_types();
+  $types = array();
+  foreach ($node_types as $item) {
+    $types[$item->type] = $item->name;
+  }
+  $tmp = variable_get('etype_xml_node_type');
+  // default should be article normally
+  $default_type = (empty($tmp))? 'article': $tmp;
 
   /* get available text formats and make into array */
   $filter_formats = filter_formats();
@@ -19,20 +32,6 @@ function etype_xml_importer_admin() {
   }
 
   $form = [];
-
-  // Default Import URL
-  $tmp = variable_get('etype_xml_base_import_url');
-  $etype_xml_base_import_url = empty($tmp)? 'http://olivexml.etypeservices.com/olivexml/': $tmp;
-
-  // Choose node type into which to import
-  $node_types = node_type_get_types();
-  $types = array();
-  foreach ($node_types as $item) {
-    $types[$item->type] = $item->name;
-  }
-  $tmp = variable_get('etype_xml_node_type');
-  // default should be article normally
-  $default_type = (empty($tmp))? 'article': $tmp;
 
   /* importer settings */
   $form['etype_xml_importer'] = array(
