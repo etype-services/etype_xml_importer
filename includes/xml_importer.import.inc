@@ -80,8 +80,6 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'images':
           $fields = field_info_field_map();
-          print_r($fields);
-          exit;
           $files = array();
           print_r($v);
           foreach ($v as $arr) {
