@@ -100,8 +100,10 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
               $caption = substr($arr['caption'], 0, 255);
               //$file->title = utf8_encode($caption);
               // Groesbeck issue - if field_file_image_title_text exists, need to use it
+              // TODO: make this work
               if (key_exists('field_file_image_title_text', $fields)) {
                 $file->file_image_title_text = $caption;
+                $wrapper->file_image_title_text->set($v);
               } else {
                 $file->title = $caption;
               }
