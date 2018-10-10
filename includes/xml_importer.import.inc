@@ -90,10 +90,10 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             /* Set caption if image field caption enabled, otherwise set
             title */
             if (module_exists('image_field_caption')) {
-              $file->image_field_caption = array(
-                'value' => $arr['caption'],
-                'format' => 'plain_text'
-              );
+              //$file->image_field_caption = array(
+              //  'value' => $arr['caption'],
+              //  'format' => 'plain_text'
+              //);
             } else {
               /* truncate to fit */
               $caption = substr($arr['caption'], 0, 255);
