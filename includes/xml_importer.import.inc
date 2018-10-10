@@ -83,7 +83,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           print_r($v);
           foreach ($v as $arr) {
             /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
-            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
+            $rand = substr(md5(uniqid(mt_rand(), true)), 0, 10);
             $file = file_save_data(file_get_contents($arr['path']), 'public://' . $rand . '_' . $arr['name']);
             $file->display = '1';
             $file->description = $arr['caption'];
