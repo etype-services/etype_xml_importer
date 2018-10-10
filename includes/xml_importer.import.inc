@@ -80,6 +80,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
 
         case 'images':
           $files = array();
+          print_r($v);
           foreach ($v as $arr) {
             /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
             $rand = substr(md5(uniqid(mt_rand(), true)), 0, 8);
@@ -104,7 +105,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $files[] = $file;
             print_r($files);
           }
-          $wrapper->field_image->set($files);
+          //$wrapper->field_image->set($files);
           break;
 
         default:
@@ -330,7 +331,7 @@ function etype_xml_importer_olive_import() {
                       'images' => $array['images'],
                     );
 
-                    print_r($node);
+                    //print_r($node);
 
                     $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
