@@ -303,20 +303,6 @@ function etype_xml_importer_olive_import() {
                       }
                     }
 
-                    // print_r ($images);
-
-                    $array['images'] = array();
-                    if (count($images) > 0) {
-                      foreach ($images as $image) {
-                        $ipath = $extract_dir . 'img/' . $image['image'];
-                        $array['images'][] = array(
-                          'name' => $image['image'],
-                          'path' => $ipath,
-                          'caption' => $image['caption'],
-                        );
-                      }
-                    }
-                    /* Images now part of $array */
                     // print_r ($array);
                     $pub_date = strtotime($array['pub_date']);
 
@@ -328,8 +314,20 @@ function etype_xml_importer_olive_import() {
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
                       $subhead_field => $array['slugline'],
                       'field_date1' => $pub_date, // Laurel Outlook
-                      'images' => $array['images'],
                     );
+
+                    $array = [];
+                    if (count($images) > 0) {
+                      foreach ($images as $image) {
+                        $ipath = $extract_dir . 'img/' . $image['image'];
+                        $array[] = [
+                          'name' => $image['image'],
+                          'path' => $ipath,
+                          'caption' => $image['caption'],
+                        ];
+                      }
+                      $node['images'] = $array;
+                    }
 
                     //print_r($node);
 
