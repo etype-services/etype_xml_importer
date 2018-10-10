@@ -86,14 +86,14 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
             $rand = substr(md5(uniqid(mt_rand(), true)), 0, 10);
             $file = file_save_data(file_get_contents($arr['path']), 'public://' . $rand . '_' . $arr['name']);
             $file->display = '1';
-            $file->description = $arr['caption'];
+            //$file->description = $arr['caption'];
             /* Set caption if image field caption enabled, otherwise set
             title */
             if (module_exists('image_field_caption')) {
-              //$file->image_field_caption = array(
-              //  'value' => $arr['caption'],
-              //  'format' => 'plain_text'
-              //);
+              $file->image_field_caption = array(
+                'value' => $arr['caption'],
+                'format' => 'plain_text'
+              );
             } else {
               /* truncate to fit */
               $caption = substr($arr['caption'], 0, 255);
