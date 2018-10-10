@@ -79,6 +79,9 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
           break;
 
         case 'images':
+          $fields = field_info_field_map();
+          print_r($fields);
+          exit;
           $files = array();
           print_r($v);
           foreach ($v as $arr) {
@@ -99,6 +102,7 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
               $caption = substr($arr['caption'], 0, 255);
               //$file->title = utf8_encode($caption);
               //$file->title = $caption;
+              $file->file_image_title_text = $caption;
             }
             $file = file_save($file);
             $file = (array) $file;
