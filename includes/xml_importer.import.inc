@@ -101,8 +101,13 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
               /* truncate to fit */
               $caption = substr($arr['caption'], 0, 255);
               //$file->title = utf8_encode($caption);
-              //$file->title = $caption;
-              $file->file_image_title_text = $caption;
+              // Groesbeck issue - if field_file_image_title_text exists, need to use it
+              if (key_exists('field_file_image_title_text', $fields)) {
+                $file->file_image_title_text = $caption;
+              } else {
+                $file->title = $caption;
+              }
+
             }
             $file = file_save($file);
             $file = (array) $file;
