@@ -313,7 +313,6 @@ function etype_xml_importer_olive_import() {
                       'title' => $array['title'],
                       'summary' => strip_tags($array['description']),
                       'body' => $array['body'],
-                      'field_pulled_quote' => $array['pulled_quote'],
                       $byline_field => substr($array['byline'], 0, 255), // trim to field length
                       $subhead_field => $array['slugline'],
                       'field_date1' => $pub_date, // Laurel Outlook
@@ -330,6 +329,11 @@ function etype_xml_importer_olive_import() {
                         ];
                       }
                       $node['images'] = $array;
+                    }
+
+                    // otherwise field is initiated and shows empty on node page
+                    if (! empty($array['pulled_quote'])) {
+                      $node['field_pulled_quote'] = $array['pulled_quote'];
                     }
 
                     //print_r($node);
