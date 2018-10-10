@@ -100,7 +100,8 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
               /* truncate to fit */
               $caption = substr($arr['caption'], 0, 255);
               //$file->title = utf8_encode($caption);
-              $file->title = Encoding::toUTF8($caption);
+              $fixed = preg_replace('/\s+/', ' ', $caption);
+              $file->title = Encoding::toUTF8($fixed);
             }
             $file = file_save($file);
             $file = (array) $file;
