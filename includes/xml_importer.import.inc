@@ -175,7 +175,7 @@ function etype_xml_importer_olive_import() {
         $zip->extractTo($extract_dir);
         $zip->close();
       } else {
-        watchdog('etype', "eType XML Importer could not open Zip Archive %file", $variables = array('%file' => $zip_file), $severity = WATCHDOG_WARNING);
+        watchdog('etype_xml_importer', "eType XML Importer could not open Zip Archive %file", $variables = array('%file' => $zip_file), $severity = WATCHDOG_WARNING);
         exit;
       }
 
@@ -350,6 +350,6 @@ function etype_xml_importer_olive_import() {
         }
       }
     }
-    watchdog('etype', "eType XML Importer imported %num stories.", $variables = array('%num' => $i), $severity = WATCHDOG_NOTICE);
+    watchdog('etype_xml_importer', "eType XML Importer imported %num stories.", $variables = array('%num' => $i), $severity = WATCHDOG_NOTICE);
   }
 }
