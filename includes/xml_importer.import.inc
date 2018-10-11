@@ -97,10 +97,10 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
                 'format' => 'plain_text'
               );
             } else {
-              /* truncate to fit */
+              /* remove whitespace and truncate to fit */
               $fixed = preg_replace('/\s+/', ' ', $arr['caption']);
               $trimmed = substr($fixed, 0, 255);
-              $file->title = Encoding::toUTF8($trimmed);
+              $file->title = $trimmed;
             }
             $file = file_save($file);
             $file = (array) $file;
@@ -309,11 +309,11 @@ function etype_xml_importer_olive_import() {
                     $pub_date = strtotime($array['pub_date']);
 
                     $node = array(
-                      'title' => $array['title'],
-                      'summary' => strip_tags($array['description']),
-                      'body' => $array['body'],
-                      $byline_field => substr($array['byline'], 0, 255), // trim to field length
-                      $subhead_field => $array['slugline'],
+                      'title' => Encoding::toUTF8($array['title']),
+                      'summary' => strip_tags(Encoding::toUTF8($array['description'])),
+                      'body' => Encoding::toUTF8($array['body']),
+                      $byline_field => substr(Encoding::toUTF8($array['byline']), 0, 255), // trim to field length
+                      $subhead_field => Encoding::toUTF8($array['slugline']),
                       'field_date1' => $pub_date, // Laurel Outlook
                     );
 
@@ -324,7 +324,7 @@ function etype_xml_importer_olive_import() {
                         $array[] = [
                           'name' => $image['image'],
                           'path' => $ipath,
-                          'caption' => $image['caption'],
+                          'caption' => Encoding::toUTF8($image['caption']),
                         ];
                       }
                       $node['images'] = $array;
