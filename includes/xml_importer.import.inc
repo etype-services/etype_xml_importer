@@ -7,7 +7,7 @@ use \ForceUTF8\Encoding;  // It's namespaced now.
  * @param array $values
  * @param string $entity_type
  */
-function etype_xml_importer_entity_create($item = array(), $values = array(), $entity_type = 'node') {
+function etype_xml_importer_entity_create($item = [], $values = [], $entity_type = 'node') {
 
   $entity = entity_create($entity_type, $values);
   $wrapper = entity_metadata_wrapper($entity_type, $entity);
@@ -17,8 +17,10 @@ function etype_xml_importer_entity_create($item = array(), $values = array(), $e
   $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
 
   if (count($item) > 0) {
+
     $title = 'no title found';
     foreach ($item as $k => $v) {
+
       switch ($k) {
         case 'title':
           $title = $v;
@@ -336,11 +338,10 @@ function etype_xml_importer_olive_import() {
                     }
 
                     print_r($node);
-                    exit;
 
                     $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
-                    // exit;
+                    exit;
                     $i++;
                     // echo $i . ' ';
                   }
