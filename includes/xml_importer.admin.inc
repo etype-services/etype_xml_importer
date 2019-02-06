@@ -111,18 +111,18 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_pulled_quote_format', 'plain_text'),
   ];
 
-  $form['etype_xml_importer_advanced']['etype_xml_import_classifieds'] = [
-    '#title' => t('Check to import Olive classified section.'),
-    '#type' => 'checkbox',
-    '#default_value' => variable_get('etype_xml_import_classifieds', 0),
-  ];
-
   $form['etype_xml_importer_advanced']['etype_xml_default_tags'] = [
     '#type' => 'textfield',
     '#title' => t('Default Tag Term Ids'),
     '#description' => t('Comma-separated, leave blank if none.'),
     '#size' => 55,
     '#default_value' => variable_get('etype_xml_default_tags', ''),
+  ];
+
+  $form['etype_xml_importer_advanced']['etype_xml_import_classifieds'] = [
+    '#title' => t('Check to import Olive classified section.'),
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('etype_xml_import_classifieds', 0),
   ];
 
   return system_settings_form($form);
