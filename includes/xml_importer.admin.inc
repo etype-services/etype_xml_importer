@@ -9,7 +9,7 @@ function etype_xml_importer_admin() {
 
   // Choose node type into which to import
   $node_types = node_type_get_types();
-  $types = [);
+  $types = [];
   foreach ($node_types as $item) {
     $types[$item->type] = $item->name;
   }
@@ -37,7 +37,7 @@ function etype_xml_importer_admin() {
   $form['etype_xml_importer'] = [
     '#type' => 'fieldset',
     '#title' => t('Basic configuration'),
-  ]
+  ];
 
   $form['etype_xml_importer']['etype_xml_import_file'] = [
     '#type' => 'textfield',
@@ -45,7 +45,7 @@ function etype_xml_importer_admin() {
     '#description' => t('Enter the file name or names to import. Separate multiple files with a comma.'),
     '#size' => 55,
     '#default_value' => variable_get('etype_xml_import_file'),
-  ]
+  ];
 
   $form['etype_xml_importer']['etype_xml_cron_schedule'] = [
     '#type' => 'textfield',
