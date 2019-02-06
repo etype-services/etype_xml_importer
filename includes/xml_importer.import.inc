@@ -340,7 +340,7 @@ function etype_xml_importer_olive_import() {
                       $node['field_pulled_quote'] = $array['pulled_quote'];
                     }
 
-                    print_r($node);
+                    // print_r($node);
 
                     $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
