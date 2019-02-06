@@ -117,5 +117,13 @@ function etype_xml_importer_admin() {
     '#default_value' => variable_get('etype_xml_import_classifieds', 0),
   );
 
+  $form['etype_xml_importer_advanced']['etype_xml_default_tags'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Default Tag Term Ids'),
+    '#description' => t('Comma-separated, leave blank if none.'),
+    '#size' => 55,
+    '#default_value' => $etype_xml_base_import_url,
+  );
+
   return system_settings_form($form);
 }

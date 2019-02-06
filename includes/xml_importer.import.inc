@@ -15,6 +15,7 @@ function etype_xml_importer_entity_create($item = [], $values = [], $entity_type
   $subhead_field = variable_get('etype_xml_subhead_field', 'field_subhead');
   $subhead_format = variable_get('etype_xml_subhead_format', 'plain_text');
   $pullquote_format = variable_get('etype_xml_pulled_quote_format', 'plain_text');
+  $default_tags = variable_get('etype_xml_default_tags', []);
 
   if (count($item) > 0) {
 
@@ -118,8 +119,9 @@ function etype_xml_importer_entity_create($item = [], $values = [], $entity_type
           }
       }
 
-      $tags = [470,471];
-      $wrapper->field_tags->set($tags);
+      if (count($default_tags) > 0) {
+        $wrapper->field_tags->set($default_tags);
+      }
 
     }
     // try to continue and not stop the whole import
