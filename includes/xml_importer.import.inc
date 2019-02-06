@@ -118,7 +118,7 @@ function etype_xml_importer_entity_create($item = [], $values = [], $entity_type
           }
       }
 
-      $wrapper->field_tags->set();
+      $wrapper->field_tags->set([]);
 
     }
     // try to continue and not stop the whole import
