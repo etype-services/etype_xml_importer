@@ -348,7 +348,7 @@ function etype_xml_importer_olive_import() {
 
                     $values['created'] = $pub_date;
                     etype_xml_importer_entity_create($node, $values);
-                    exit;
+                    // exit;
                     $i++;
                     // echo $i . ' ';
                   }
