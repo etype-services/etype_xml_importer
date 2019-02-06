@@ -122,7 +122,7 @@ function etype_xml_importer_admin() {
     '#title' => t('Default Tag Term Ids'),
     '#description' => t('Comma-separated, leave blank if none.'),
     '#size' => 55,
-    '#default_value' => variable_get('etype_xml_default_tags', []),
+    '#default_value' => variable_get('etype_xml_default_tags', ''),
   ];
 
   return system_settings_form($form);
