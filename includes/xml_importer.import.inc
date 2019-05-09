@@ -86,7 +86,7 @@ function etype_xml_importer_entity_create($item = [], $values = [], $entity_type
         case 'images':
           //$fields = field_info_field_map();
           $files = array();
-          print_r($v);
+          // print_r($v);
           foreach ($v as $arr) {
             /* Files coming from Olive named the same, gives duplicate entry error for file_managed table */
             $rand = substr(md5(uniqid(mt_rand(), true)), 0, 10);
