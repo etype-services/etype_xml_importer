@@ -278,6 +278,7 @@ function etype_xml_importer_olive_import() {
                     } else {
                       $array['byline'] = '';
                     }
+                    echo $array['byline'] . "\n";
 
                     // get the pull quote
                     preg_match("'<xhtml:p prism:class=\"pullQuote\">(.*?)</xhtml:b>'s", $ar_xml, $coincidencias);
