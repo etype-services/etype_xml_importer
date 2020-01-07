@@ -298,7 +298,7 @@ function etype_xml_importer_olive_import() {
                       foreach ($matches as $item) {
                         preg_match("/<dc:format>([^<]+)/", $item, $imatches);
                         if (isset($imatches[1]) && $imatches[1] == 'image/jpg') {
-                          preg_match("'<pam:mediaReference pam:refid=\"(.*)\" />'", $item, $arr);
+                          preg_match("'<pam:mediaReference pam:refid=\"(.*)\"\s*/>'", $item, $arr);
                           if (isset($arr[1])) {
                             $iarray = array();
                             $iarray['image'] = $arr[1];
